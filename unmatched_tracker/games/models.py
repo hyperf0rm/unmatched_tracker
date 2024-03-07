@@ -33,3 +33,7 @@ class Sidekick(Character):
                              on_delete=models.CASCADE,
                              related_name='sidekicks')
     count = models.PositiveSmallIntegerField(default=0)
+
+
+class Battle(models.Model):
+    pass
