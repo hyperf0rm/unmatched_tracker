@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from games.models import Hero, Sidekick
+from games.models import Hero, Sidekick, Battle, Participant
 
 
 class SidekickInline(admin.TabularInline):
@@ -16,3 +16,12 @@ class HeroAdmin(admin.ModelAdmin):
 @admin.register(Sidekick)
 class SidekickAdmin(admin.ModelAdmin):
     pass
+
+
+class ParticipantInline(admin.TabularInline):
+    model = Participant
+
+
+@admin.register(Battle)
+class BattleAdmin(admin.ModelAdmin):
+    inlines = (ParticipantInline,)
