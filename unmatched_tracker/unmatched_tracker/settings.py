@@ -26,7 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
-    'games.apps.GamesConfig'
+    'games.apps.GamesConfig',
+    'django_bootstrap5'
 ]
 
 MIDDLEWARE = [
@@ -41,10 +42,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'unmatched_tracker.urls'
 
+TEMPLATES_DIR = BASE_DIR / 'templates'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -106,32 +109,14 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Templates
-
-TEMPLATES_DIR = BASE_DIR / 'templates'
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ]
-        },
-    }
-] 
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'static'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 
 
 # Media files

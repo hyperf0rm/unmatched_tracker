@@ -2,8 +2,8 @@
 <header>
   <nav class="navbar navbar-light" style="background-color: lightskyblue">
     <div class="container">
-      <a class="navbar-brand" href="">
-        <img src="" width="30" height="30" class="d-inline-block align-top" alt="">
+      <a class="navbar-brand" href="{% url 'games:index' %}">
+        <img src="{% static 'img/logo.jpg' %}" width="30" height="30" class="d-inline-block align-top" alt="">
         Unmatched Tracker
       </a>
       {% with request.resolver_match.view_name as view_name %}
@@ -21,18 +21,18 @@
           {% if user.is_authenticated %}
             <div class="btn-group" role="group" aria-label="Basic outlined example">
               <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
-                  href="">Написать пост</a></button>
+                  href="{% url 'games:create' %}">Добавить сражение</a></button>
               <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
                   href="">{{ user.username }}</a></button>
               <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
-                  href="{% url 'logout' %}">Выйти</a></button>
+                  href="">Выйти</a></button>
             </div>
           {% else %}
             <div class="btn-group" role="group" aria-label="Basic outlined example">
               <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
-                  href="{% url 'login' %}">Войти</a></button>
+                  href="">Войти</a></button>
               <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
-                  href="{% url 'registration' %}">Регистрация</a></button>
+                  href="">Регистрация</a></button>
             </div>
           {% endif %}
         </ul>

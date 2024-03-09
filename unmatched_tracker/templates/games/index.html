@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}
+  Unmatched Tracker
+{% endblock %}
+{% block content %}
+  <h1 class="mb-5">Сражения</h1>
+  {% for battle in battle_list %}
+    <article class="mb-5">  
+      {% include "includes/battle_card.html" %}
+    </article>   
+  {% endfor %}
+{% endblock %}

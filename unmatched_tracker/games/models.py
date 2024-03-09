@@ -40,26 +40,26 @@ class Sidekick(Character):
 
 
 class Participant(models.Model):
-    WIN, LOSS, DRAW = 'WIN', 'LOSS', 'DRAW'
-    RESULT = (
-        (WIN, 'win'),
-        (LOSS, 'loss'),
-        (DRAW, 'draw')
-    )
-
     hero = models.ForeignKey(Hero,
                              on_delete=models.CASCADE)
     user = models.ForeignKey(User,
                              on_delete=models.CASCADE)
-    result = models.CharField(max_length=10, choices=RESULT)
-    battle = models.ForeignKey('Battle', on_delete=models.CASCADE)
+    is_winner = models.BooleanField(default=False)
+    battle = models.ForeignKey('Battle', on_delete=models.CASCADE,
+                               related_name='participants')
 
     def __str__(self):
-        return f'{self.user.username} playing as {self.hero.name}: {self.result}'
+        return f'{self.user.username} играл за {self.hero.name}: {self.winner_str}'
+
+    @property
+    def winner_str(self):
+        if self.is_winner:
+            return 'победа'
+        return 'поражение'
 
 
 class Battle(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'Battle #{self.pk}'
+        return f'Сражение #{self.pk}'
